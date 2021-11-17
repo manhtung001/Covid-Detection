@@ -14,7 +14,7 @@ import shutil
 
 from utils import *
 
-app = FastAPI(title='API BunChaBert')
+app = FastAPI(title='API Detect Covid')
 
 # By using @app.get("/") you are allowing the GET method to work for the / endpoint.
 
@@ -117,33 +117,4 @@ nest_asyncio.apply()
 host = "0.0.0.0" if os.getenv("DOCKER-SETUP") else "127.0.0.1"
 
 # Spin up the server!
-uvicorn.run(app, host=host, port=8001)
-
-# Allows the server to be run in this interactive environment
-nest_asyncio.apply()
-
-# Host depends on the setup you selected (docker or virtual env)
-host = "0.0.0.0" if os.getenv("DOCKER-SETUP") else "127.0.0.1"
-
-# Spin up the server!
-uvicorn.run(app, host=host, port=8001)
-
-# for replit
-# if __name__ == '__main__':
-#   # Allows the server to be run in this interactive environment
-#   nest_asyncio.apply()
-
-#   # Host depends on the setup you selected (docker or virtual env)
-#   host = "0.0.0.0"
-
-#   # Spin up the server!
-#   uvicorn.run(app, host=host, port=8000)
-
-#   # Allows the server to be run in this interactive environment
-#   nest_asyncio.apply()
-
-#   # Host depends on the setup you selected (docker or virtual env)
-#   host = "0.0.0.0"
-
-#   # Spin up the server!
-#   uvicorn.run(app, host=host, port=8000)
+uvicorn.run(app, host=host, port=8000)
