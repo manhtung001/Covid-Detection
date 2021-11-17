@@ -31,7 +31,7 @@ if not os.path.exists(tmpPath):
 
 @app.get("/")
 def home():
-    return "Congratulations! Your API is working as expected. Author: Tung Khong Manh. Now head over to " \
+    return "Congratulations! Your API is working as expected. Author: BunChaBert. Now head over to " \
            "/docs. "
 
 
