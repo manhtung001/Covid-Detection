@@ -1,0 +1,10 @@
+pip install ffmpeg-python
+conda install -c conda-forge face_recognition
+conda install opencv
+conda install -c conda-forge dlib
+pip install numpy==1.19.5
+pip install moviepy
+pip install pydub
+pip install imutils
+
+pip install beautifulsoup4
