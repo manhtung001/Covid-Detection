@@ -118,3 +118,4 @@ host = "0.0.0.0" if os.getenv("DOCKER-SETUP") else "127.0.0.1"
 
 # Spin up the server!
 uvicorn.run(app, host=host, port=8000)
+
