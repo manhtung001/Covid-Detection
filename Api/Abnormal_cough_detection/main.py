@@ -16,14 +16,9 @@ from utils import *
 
 app = FastAPI(title='API Model Abnormal cough detection')
 
-
-# By using @app.get("/") you are allowing the GET method to work for the / endpoint.
-
 @app.get("/")
 def home():
-    return "Congratulations! Your API is working as expected. Author: BunChaBert. Now head over to " \
-           "http://localhost:8001/docs. "
-
+    return "Congratulations! Your API is working as expected. Author: BunChaBert. Now head over to /docs" 
 
 @app.post("/predict")
 async def prediction(fileUpload: UploadFile = File(...)):
