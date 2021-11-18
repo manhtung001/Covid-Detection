@@ -29,6 +29,6 @@ def predict(file):
     spec = spec.reshape(-1, 64, 44, 1)
     pre = np.argmax(model.predict(np.array(spec)), axis = -1)
     # cough = ['Barking cough', 'Chesty and wet cough', 'Coughing hard', 'Coughing up crap again', 'Dry Afternoon Cough', 'Gaggy wet cough', 'Night wet cough', 'Spring Allergy Coughing', 'Unknow']
-    cough = ['Ho ăng ẳng', 'Ho có đờm', 'Ho khan', 'Coughing up crap again', 'Dry Afternoon Cough', 'Gaggy wet cough', 'Night wet cough', 'Spring Allergy Coughing', 'Unknow']
+    cough = ['Ho ăng ẳng', 'Ho có đờm', 'Ho dữ dội', 'Ho dai dẳng', 'Ho khan', 'Ho có đờm', 'Ho có đờm vào ban đêm', 'Ho dị ứng', 'Không phát hiện tiếng ho']
     return cough[pre[0]]
    
