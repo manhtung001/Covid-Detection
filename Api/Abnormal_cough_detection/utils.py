@@ -28,6 +28,7 @@ def predict(file):
     spec = log_mel_aud(file)
     spec = spec.reshape(-1, 64, 44, 1)
     pre = np.argmax(model.predict(np.array(spec)), axis = -1)
-    cough = ['Barking cough', 'Chesty and wet cough', 'Coughing hard', 'Coughing up crap again', 'Dry Afternoon Cough', 'Gaggy wet cough', 'Night wet cough', 'Spring Allergy Coughing', 'Unknow']
+    # cough = ['Barking cough', 'Chesty and wet cough', 'Coughing hard', 'Coughing up crap again', 'Dry Afternoon Cough', 'Gaggy wet cough', 'Night wet cough', 'Spring Allergy Coughing', 'Unknow']
+    cough = ['Ho ăng ẳng', 'Ho có đờm', 'Ho khan', 'Coughing up crap again', 'Dry Afternoon Cough', 'Gaggy wet cough', 'Night wet cough', 'Spring Allergy Coughing', 'Unknow']
     return cough[pre[0]]
    
