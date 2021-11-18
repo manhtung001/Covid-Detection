@@ -1,2 +1,4 @@
-# AI-Covid_KO-Hackathon
+# BunChaBERT - Challenge1 - KO Hackathon
+
+
 
