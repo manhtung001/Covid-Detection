@@ -15,6 +15,33 @@ from bs4 import BeautifulSoup
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 
+def responeWithRecommend(acc):
+    acc = acc * 100
+    if acc >= 90:
+        list = ['Tách bản thân khỏi những người khác. Cố gắng ở nhà trong phòng riêng và tránh xa người khác và thú cưng trong nhà bạn càng nhiều càng tốt',
+                'Bạn cần gọi điện cho trung tâm y tế', 'Theo dõi các triệu chứng']
+    elif acc >= 70:
+        list = ['Ở nhà trừ khi cần được chăm sóc y tế', 'Theo dõi các triệu chứng']
+    elif acc >= 50:
+        list = ['Bạn nên đi xét nghiệm Covid',
+                'Theo dõi các triệu chứng']
+    elif acc >= 30:
+        list = ['Hãy giữ gìn sức khỏe',
+                'Tránh sử dụng rượu bia và ma túy.',
+                'Hãy chăm sóc cho thân thể và tâm trí của bạn. Hãy hít thở sâu, ngồi thiền, luyện tập giãn cơ và tập thể dục thường xuyên.']
+    else:
+        list = ['Cố gắng ăn các bữa ăn lành mạnh, có đầy đủ chất dinh dưỡng.',
+                'Ngủ đủ giấc.']
+    return list
+
+def handleResponeEngine(pred):
+    label = pred["assessment"]["recommended_label"]
+    acc = pred["assessment"]["recommended_prob"] / 100
+    if label == "negative":
+        acc = 1 - acc
+    return acc
+
+
 def crawlDataCovidVn():
     try:
         linkNews = "https://covid19.gov.vn"

@@ -77,10 +77,14 @@ async def uploadAndPredictVideo(uuid: str, engine: int, fileUpload: UploadFile =
         pred = ""
         if engine == 0:  # predict qua my model
             pred = predict(open(pathWav, 'rb'))
+            recommend = responeWithRecommend(pred)
         elif engine == 1: # predict qua engine hackathon
             pred = call2Engine.callApi(fileWavName, open(pathWav, 'rb'))
+            pred = handleResponeEngine(pred)
+            recommend = responeWithRecommend(pred)
         return {
             "result": pred,
+            "recommend": recommend
         }
     else:
         return checkIdentify
@@ -95,6 +99,7 @@ async def predictMyModel(fileUpload: UploadFile = File(...)):
     pred = predict(fileUpload.file)
     return {
         "result": pred,
+        "recommend": responeWithRecommend(pred)
     }
 
 
@@ -104,9 +109,12 @@ async def predictEngine(fileUpload: UploadFile = File(...)):
     fileExtension = filename.split(".")[-1] in ("wav")
     if not fileExtension:
         raise HTTPException(status_code=415, detail="Unsupported file provided.")
-    pref_from_engine = call2Engine.callApi(fileUpload.filename, fileUpload.file)
+    pred = call2Engine.callApi(fileUpload.filename, fileUpload.file)
+    pred = handleResponeEngine(pred)
+    recommend = responeWithRecommend(pred)
     return {
-        "result": pref_from_engine
+        "result": pred,
+        "recommend": recommend
     }
 
 
