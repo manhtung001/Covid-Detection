@@ -93,10 +93,18 @@ async def uploadAndPredictVideo(uuid: str, engine: int, fileUpload: UploadFile =
 @app.post("/predictMyModel")
 async def predictMyModel(fileUpload: UploadFile = File(...)):
     filename = fileUpload.filename
-    fileExtension = filename.split(".")[-1] in ("wav")
+    fileExtension = filename.split(".")[-1] in ("wav", "m4a")
     if not fileExtension:
         raise HTTPException(status_code=415, detail="Unsupported file provided.")
-    pred = predict(fileUpload.file)
+    if filename.split(".")[-1] in ("m4a"):
+        file_location = f"tmp/{fileUpload.filename}"
+        with open(file_location, "wb+") as file_object:
+            file_object.write(fileUpload.file.read())
+        print(f"info: file {fileUpload.filename} saved at {file_location}")
+        pathWav, _ = m4aToWav(file_location, fileUpload.filename)
+        pred = predict(open(pathWav, 'rb'))
+    else:
+        pred = predict(fileUpload.file)
     return {
         "result": pred,
         "recommend": responeWithRecommend(pred)
@@ -106,10 +114,18 @@ async def predictMyModel(fileUpload: UploadFile = File(...)):
 @app.post("/predictEngine")
 async def predictEngine(fileUpload: UploadFile = File(...)):
     filename = fileUpload.filename
-    fileExtension = filename.split(".")[-1] in ("wav")
+    fileExtension = filename.split(".")[-1] in ("wav", "m4a")
     if not fileExtension:
         raise HTTPException(status_code=415, detail="Unsupported file provided.")
-    pred = call2Engine.callApi(fileUpload.filename, fileUpload.file)
+    if filename.split(".")[-1] in ("m4a"):
+        file_location = f"tmp/{fileUpload.filename}"
+        with open(file_location, "wb+") as file_object:
+            file_object.write(fileUpload.file.read())
+        print(f"info: file {fileUpload.filename} saved at {file_location}")
+        pathWav, filename = m4aToWav(file_location, fileUpload.filename)
+        pred = call2Engine.callApi(filename, open(pathWav, 'rb'))
+    else:
+        pred = call2Engine.callApi(fileUpload.filename, fileUpload.file)
     pred = handleResponeEngine(pred)
     recommend = responeWithRecommend(pred)
     return {

@@ -3,7 +3,6 @@ import os
 import pickle
 import cv2
 import face_recognition
-import ffmpeg
 import joblib
 import librosa
 import numpy as np
@@ -11,8 +10,19 @@ import requests
 import moviepy.editor as mp
 from imutils.video import VideoStream
 from bs4 import BeautifulSoup
+from pydub import AudioSegment
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
+
+def m4aToWav(path, name):
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    track = AudioSegment.from_file(path)
+    tmpPath = os.path.join(dir_path, 'tmp')
+    wav_filename = name.replace("m4a", 'wav')
+    pathWav = os.path.join(tmpPath, wav_filename)
+    file_handle = track.export(pathWav, format='wav')
+
+    return pathWav, wav_filename
 
 
 def responeWithRecommend(acc):
@@ -243,3 +253,6 @@ def predict(file):
         res += model.predict(x)
 
     return (res / len(model_list))[0]
+
+
+

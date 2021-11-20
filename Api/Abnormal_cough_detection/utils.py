@@ -5,10 +5,23 @@ import librosa
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import LabelEncoder
+from pydub import AudioSegment
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
 filepath = './saved_model_abnormal_cough'
 
 from tensorflow.keras.models import load_model
+
+def m4aToWav(path, name):
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    track = AudioSegment.from_file(path)
+    tmpPath = os.path.join(dir_path, 'tmp')
+    wav_filename = name.replace("m4a", 'wav')
+    pathWav = os.path.join(tmpPath, wav_filename)
+    file_handle = track.export(pathWav, format='wav')
+
+    return pathWav, wav_filename
 
 def log_mel_aud(aud):
     wav, sr = librosa.load(aud)

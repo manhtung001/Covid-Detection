@@ -11,10 +11,18 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import StreamingResponse
 import librosa
 import os
+import shutil
 
 from utils import *
 
 app = FastAPI(title='API Model Abnormal cough detection')
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+tmpPath = os.path.join(dir_path, 'tmp')
+if os.path.exists(tmpPath):
+    shutil.rmtree(tmpPath)
+if not os.path.exists(tmpPath):
+    os.mkdir(tmpPath)
 
 @app.get("/")
 def home():
@@ -23,11 +31,20 @@ def home():
 @app.post("/predict")
 async def prediction(fileUpload: UploadFile = File(...)):
     filename = fileUpload.filename
-    fileExtension = filename.split(".")[-1] in ("wav")
+    fileExtension = filename.split(".")[-1] in ("wav", "m4a")
     if not fileExtension:
         raise HTTPException(status_code=415, detail="Unsupported file provided.")
-    
-    pred = predict(fileUpload.file)
+    if filename.split(".")[-1] in ("m4a"):
+        file_location = f"tmp/{fileUpload.filename}"
+        with open(file_location, "wb+") as file_object:
+            file_object.write(fileUpload.file.read())
+        print(f"info: file {fileUpload.filename} saved at {file_location}")
+        pathWav, _ = m4aToWav(file_location, fileUpload.filename)
+        pred = predict(open(pathWav, 'rb'))
+    else:
+        pred = predict(fileUpload.file)
+
+    # pred = predict(fileUpload.file)
     return {"result": pred}
 
 
