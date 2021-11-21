@@ -60,6 +60,7 @@ python3 backend.py
 ```
 
 **4. Install python package for Covid_detection_and_news**
+
 Note that deactivate the old venv and cd to the root directory.
 ```sh
 cd Api/Covid_detection_and_news
