@@ -10,8 +10,6 @@ Our team consists of 3 members:
 2. Khổng Mạnh Tùng - PTIT - Backend, AI
 3. Đỗ Duy Anh - HUST - Frontend, UX/UI
 
-## Demo
-
 ## Main feature
 
 1. **Chatbot** - Friendly chatbot system to help answer questions related to the
