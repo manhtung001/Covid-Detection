@@ -28,6 +28,10 @@ Our team consists of 3 members:
 
 ### Requirements
 
+```
+Python 3.6.9 or Python 3.7
+Pip 
+```
 
 ### Instructions
 
