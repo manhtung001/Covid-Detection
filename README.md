@@ -30,37 +30,69 @@ Our team consists of 3 members:
 
 ```
 Python 3.6.9 or Python 3.7
-Pip 
+Pip 21.3.1
 ```
 
 ### Instructions
 
-**1. Make sure npm and expo have already been installed:**
+**0. Clone the folder app:**
+
+```sh
+git clone https://github.com/manhtung001/Covid-Detection.git
+```
+
+**1. Extract the model file to detect abnormal coughs**
+
+```sh
+cd Api/Abnormal_cough_detection/
+unzip saved_model_abnormal_cough.zip
+```
+
+**2. Install python package for Abnormal_cough_detection**
+```sh
+python3 -m venv /env
+source env/bin/activate
+pip3 install -r requirements.txt
+```
+**3. Run Abnormal_cough_detection Api**
+```sh
+python3 backend.py
+```
+
+**4. Install python package for Covid_detection_and_news**
+Note that deactivate the old venv and cd to the root directory.
+```sh
+cd Api/Covid_detection_and_news
+python3 -m venv /env
+source env/bin/activate
+pip3 install -r requirements.txt
+```
+
+**5. Run Covid_detection_and_news Api**
+```sh
+python3 backend.py
+```
+
+**6. Make sure npm and expo have already been installed:**
 
 ```sh
 npm install expo-cli --global
 ```
 
-**2. Clone the folder app:**
-
-```sh
-git clone 
-```
-
-**3. Change directory and install all the needed node_modules package using:**
+**7. Change directory and install all the needed node_modules package using:**
 
 ```sh
 cd 
 npm install
 ```
 
-**4. Run app:**
+**8. Run app:**
 
 ```sh
 expo start
 ```
 
-**5. Notes:**
+**9. Notes:**
 After the app runs successfully, you can test either on the simulator or your own smartphone by scanning the QR code on Expo Metro Bundler.
 
 

@@ -4,5 +4,5 @@
 **/__pycache__
 ./Api/**/env
 ./Api/**/__pycache__
-./Api/Abnormal_cough/saved_model_abnormal_cough
+./Api/Abnormal_cough_detection/saved_model_abnormal_cough
 **/saved_model_abnormal_cough
