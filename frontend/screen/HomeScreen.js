@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import moment from 'moment';
 // import { getAuth } from 'firebase/auth';
 
 // const auth = getAuth();
@@ -84,6 +85,11 @@ export default function HomeScreen({ navigation }) {
   // const user = auth.currentUser;
   // console.log(user.email);
   // console.log(user.displayName);
+  const [time, setTime] = useState();
+  setInterval(() => {
+    const now = moment().format('HH:mm');
+    setTime(now);
+  }, 1000);
 
   return (
     <ScrollView style={styles.container}>
@@ -96,7 +102,7 @@ export default function HomeScreen({ navigation }) {
 
       <View style={styles.locationWrapper}>
         <Text style={styles.titleText}>Việt Nam</Text>
-        <Text style={styles.timeText}>21 November 2021, 21.30</Text>
+        <Text style={styles.timeText}>21 November 2021, {time}</Text>
       </View>
 
       <View style={styles.statisticWrapper}>

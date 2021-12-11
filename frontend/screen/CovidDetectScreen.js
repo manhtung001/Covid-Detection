@@ -80,9 +80,9 @@ export default CovidDetectScreen = ({ navigation }) => {
       ) : (
         <>
           <Text style={styles.titleInstructionText}>
-            Chọn nút bên dưới và ho liên tục trong vòng 1 giây trong môi trường
-            yên tĩnh. Đảm bảo rằng toàn bộ khuôn mặt của bạn trong lúc ho nằm
-            trong hình.
+            Chọn nút bên dưới và ho liên tục trong vòng 2-3 giây trong môi
+            trường yên tĩnh. Đảm bảo rằng toàn bộ khuôn mặt của bạn trong lúc ho
+            nằm trong hình.
           </Text>
           <Video
             ref={video}
