@@ -19,6 +19,9 @@ import CovidDetectScreen from '../screen/CovidDetectScreen';
 import CovidDetectResultScreen from '../screen/CovidDetectResultScreen';
 import AnotherDetectScreen from '../screen/AnotherDetectScreen';
 import AnotherDetectResultScreen from '../screen/AnotherDetectResultScreen';
+import ContributeScreen from '../screen/ContributeScreen';
+import ContributeCoughScreen from '../screen/ContributeCoughScreen';
+import FeedbackScreen from '../screen/FeedbackScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -124,6 +127,40 @@ const AnotherDetectHeader = () => {
       <Text style={styles.detectInfoText}>
         Hỗ trợ nhận diện các âm thanh ho bất thường, ví dụ như: Ho khan, ho có
         đờm, ho giữ dội,...
+      </Text>
+    </View>
+  );
+};
+
+const ContributeHeader = () => {
+  return (
+    <View style={styles.headerWrapper}>
+      <Text style={styles.titleText}>ĐÓNG GÓP PHÁT TRIỂN ỨNG DỤNG</Text>
+      <Text style={styles.detectInfoText}>
+        Những đóng góp và phản hồi của bạn sẽ là nguồn tư liệu giá trị cho đội
+        ngũ phát triển chúng tôi.
+      </Text>
+    </View>
+  );
+};
+
+const ContributeCoughHeader = () => {
+  return (
+    <View style={styles.headerWrapper}>
+      <Text style={styles.titleText}>ĐÓNG GÓP TIẾNG HO</Text>
+      <Text style={styles.detectInfoText}>
+        Đóng góp tiếng ho để cải thiện thuật toán dự đoán tỷ lệ nhiễm Covid - 19
+      </Text>
+    </View>
+  );
+};
+
+const FeedbackHeader = () => {
+  return (
+    <View style={styles.headerWrapper}>
+      <Text style={styles.titleText}>PHẢN HỒI VỀ ỨNG DỤNG</Text>
+      <Text style={styles.detectInfoText}>
+        Đưa ra những đóng góp và phản hồi của bạn về các chức năng của ứng dụng.
       </Text>
     </View>
   );
@@ -321,6 +358,27 @@ export default function StackNavigator() {
         component={AnotherDetectResultScreen}
         options={{
           header: () => <AnotherDetectHeader />,
+        }}
+      />
+      <Stack.Screen
+        name="ContributeScreen"
+        component={ContributeScreen}
+        options={{
+          header: () => <ContributeHeader />,
+        }}
+      />
+      <Stack.Screen
+        name="ContributeCoughScreen"
+        component={ContributeCoughScreen}
+        options={{
+          header: () => <ContributeCoughHeader />,
+        }}
+      />
+      <Stack.Screen
+        name="FeedbackScreen"
+        component={FeedbackScreen}
+        options={{
+          header: () => <FeedbackHeader />,
         }}
       />
     </Stack.Navigator>

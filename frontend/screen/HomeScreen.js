@@ -60,7 +60,7 @@ const functionList = [
     image: {
       uri: require('../assets/certificate_icon.png'),
     },
-    navigate: 'Chatbot',
+    navigate: 'ContributeScreen',
   },
 ];
 
